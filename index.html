@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local PII Remover (PDF + EML)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Local PII Remover</h1>
+    <p class="privacy">All processing happens locally. No data leaves your device.</p>
+
+    <section class="panel">
+      <h2>1) Add files</h2>
+      <div id="dropZone" class="drop-zone" tabindex="0" role="button" aria-label="Drop files here or click to choose files">
+        <p><strong>Drag and drop</strong> PDF/EML files here</p>
+        <p>or</p>
+        <button id="pickFilesBtn" type="button">Choose files</button>
+        <input id="fileInput" type="file" multiple accept=".pdf,.eml,message/rfc822,application/pdf" hidden />
+      </div>
+      <small>Supported: .pdf, .eml (multiple files at once)</small>
+    </section>
+
+    <section class="panel">
+      <h2>2) Redaction rules</h2>
+      <div class="mode-row">
+        <label>
+          <input id="simpleMode" type="checkbox" checked />
+          Simple Mode (recommended)
+        </label>
+      </div>
+      <div id="advancedRules" class="advanced hidden">
+        <label for="customRegex">Custom regex rules (one per line):</label>
+        <textarea id="customRegex" rows="6" placeholder="Example:\n\\bEmployee ID:\\s*\\d{6}\\b\n(?i)passport\\s*no\\.?\\s*[:#]?\\s*[A-Z0-9]{6,9}"></textarea>
+        <p class="hint">Tip: Keep custom regex simple. Invalid lines are skipped with a warning.</p>
+      </div>
+    </section>
+
+    <section class="panel actions">
+      <h2>3) Process and download</h2>
+      <div class="button-row">
+        <button id="processAllBtn" type="button">Process All</button>
+        <button id="downloadAllBtn" type="button" disabled>Download All</button>
+        <button id="resetBtn" type="button" class="secondary">Clear memory / reset</button>
+      </div>
+      <p id="globalWarning" class="warning hidden"></p>
+      <p id="globalError" class="error hidden"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Queue</h2>
+      <div class="table-wrap">
+        <table id="queueTable">
+          <thead>
+            <tr>
+              <th>File</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>Message</th>
+              <th>Download</th>
+            </tr>
+          </thead>
+          <tbody id="queueBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Redaction summary</h2>
+      <div class="table-wrap">
+        <table id="summaryTable">
+          <thead>
+            <tr>
+              <th>File</th>
+              <th>Names</th>
+              <th>Emails</th>
+              <th>Phones</th>
+              <th>SSNs</th>
+              <th>Card-like</th>
+              <th>Custom</th>
+            </tr>
+          </thead>
+          <tbody id="summaryBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Vendored dependency placeholders (must be local files, no CDN): -->
+  <script src="vendor/pdf.min.js"></script>
+  <script src="vendor/pdf-lib.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

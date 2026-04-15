@@ -1,0 +1,99 @@
+:root {
+  --bg: #f5f7fb;
+  --panel: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #0b5fff;
+  --danger: #b42318;
+  --warn: #b54708;
+  --border: #d0d5dd;
+  --ok: #067647;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+h1 { margin-bottom: .25rem; }
+.privacy {
+  margin-top: 0;
+  color: var(--ok);
+  font-weight: 600;
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  padding: 1.2rem;
+  text-align: center;
+  cursor: pointer;
+}
+.drop-zone.drag-over { border-color: var(--primary); background: #eef4ff; }
+button {
+  border: 0;
+  border-radius: 8px;
+  padding: .6rem .9rem;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+button.secondary { background: #475467; }
+button:disabled { opacity: .6; cursor: not-allowed; }
+.mode-row { margin-bottom: .5rem; }
+.advanced textarea {
+  width: 100%;
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.hidden { display: none; }
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.warning { color: var(--warn); margin-top: .5rem; }
+.error { color: var(--danger); margin-top: .5rem; }
+.hint { color: var(--muted); font-size: .9rem; }
+.table-wrap { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  padding: .55rem;
+  font-size: .92rem;
+  vertical-align: top;
+}
+.status-pill {
+  display: inline-block;
+  border-radius: 999px;
+  padding: .2rem .6rem;
+  font-size: .75rem;
+  font-weight: 700;
+}
+.status-pending { background: #eef2ff; color: #3730a3; }
+.status-processing { background: #fff7ed; color: #9a3412; }
+.status-done { background: #ecfdf3; color: #027a48; }
+.status-error { background: #fef3f2; color: #b42318; }
+
+@media (max-width: 700px) {
+  th, td { font-size: .84rem; }
+  button { width: 100%; }
+}
